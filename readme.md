@@ -6,15 +6,14 @@ Replacing the software may be easier than complying with the service agreement.
 
 Here are some alternatives.
 
-## Podman
+And some links:
 
-Daemonless containers.
+- https://alexos.dev/2022/01/02/docker-desktop-alternatives-for-m1-mac/
 
-> Podman is a daemonless container engine for developing, managing, and running OCI Containers on your Linux System. Containers can either be run as root or in rootless mode. Simply put: alias docker=podman.
+## Ranger desktop
 
-https://podman.io/
-
-## Ranger desktop (focus on kubernetes)
+GUI and super simple installation for docker/kubernetes. Would recommend!
+Mac, linux and windows support.
 
 > Rancher Desktop is an open-source desktop application for Mac, Windows and Linux. It provides Kubernetes and container management. You can choose the version of Kubernetes you want to run. You can build, push, pull, and run container images using either containerd or Moby (dockerd). The container images you build can be run by Kubernetes immediately without the need for a registry.
 
@@ -24,11 +23,17 @@ Lima (vm) + k3s (kubernetes) + conainerd/dockerd (container runtime)
 
 ## Colima
 
+Docker alternative, possible _without_ kubernetes. My current choice, but not recommendation (no GUI)
+No windows support.
+
 > Container runtimes on macOS (and Linux) with minimal setup.
+
+https://github.com/abiosoft/colima
 
 Lima (vm) + conainerd/dockerd (container runtime)
 
-https://github.com/abiosoft/colima
+- Project Goal: To provide container runtimes on macOS with minimal setup.
+- Project Status: ⚠️ The project is still in active early stage development and updates may introduce breaking changes.
 
 ### Testrun
 
@@ -52,8 +57,17 @@ docker run --rm -d --name caddy -p 8000:80 caddy
 curl http://localhost:8000
 docker kill caddy
 docker ps
-
 ```
+
+## Podman
+
+Daemonless containers.
+
+> Podman is a daemonless container engine for developing, managing, and running OCI Containers on your Linux System. Containers can either be run as root or in rootless mode. Simply put: alias docker=podman.
+
+https://podman.io/
+
+"**lack of ability to mount volumes from the host OS**". [source](https://alexos.dev/2022/01/02/docker-desktop-alternatives-for-m1-mac/#option-2-podman)
 
 ## Minikube (focus on kubernetes)
 
