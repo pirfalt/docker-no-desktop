@@ -4,9 +4,66 @@ https://www.docker.com/legal/docker-subscription-service-agreement.
 
 Replacing the software may be easier than complying with the service agreement.
 
-Therefor, let's follow this guide. https://dhwaneetbhatt.com/blog/run-docker-without-docker-desktop-on-macos.
+Here are some alternatives.
 
-## Installation
+## Podman
+
+Daemonless containers.
+
+> Podman is a daemonless container engine for developing, managing, and running OCI Containers on your Linux System. Containers can either be run as root or in rootless mode. Simply put: alias docker=podman.
+
+https://podman.io/
+
+## Ranger desktop (focus on kubernetes)
+
+> Rancher Desktop is an open-source desktop application for Mac, Windows and Linux. It provides Kubernetes and container management. You can choose the version of Kubernetes you want to run. You can build, push, pull, and run container images using either containerd or Moby (dockerd). The container images you build can be run by Kubernetes immediately without the need for a registry.
+
+https://rancherdesktop.io/
+
+Lima (vm) + k3s (kubernetes) + conainerd/dockerd (container runtime)
+
+## Colima
+
+> Container runtimes on macOS (and Linux) with minimal setup.
+
+Lima (vm) + conainerd/dockerd (container runtime)
+
+https://github.com/abiosoft/colima
+
+### Testrun
+
+```sh
+# Install
+brew install colima
+brew install docker
+brew install docker-compose
+
+# Verify that docker is not already setup
+docker ps
+
+# Start vm + (all defaults)
+colima start
+
+# Verify that docker _is_ setup
+docker ps
+
+docker run --rm -it -v $(pwd):/app alpine ls /app
+docker run --rm -d --name caddy -p 8000:80 caddy
+curl http://localhost:8000
+docker kill caddy
+docker ps
+
+```
+
+## Minikube (focus on kubernetes)
+
+> minikube quickly sets up a local Kubernetes cluster on macOS, Linux, and Windows. We proudly focus on helping application developers and new Kubernetes users.
+
+Hyperkit, or others (vm) + minikube (kubernetes) + conainerd/docker/cri-o (container runtime)
+
+### Installation
+
+Let's follow this guide. https://dhwaneetbhatt.com/blog/run-docker-without-docker-desktop-on-macos.
 
 Extracted from the blog, the "one step installation".
 
@@ -32,11 +89,11 @@ echo "$(minikube ip) docker.local" | sudo tee -a /etc/hosts > /dev/null
 docker run hello-world
 ```
 
-## Notes
+### Notes
 
 Problems encountered and solutions. From uninstalling `docker desktop` to working on my project working again. This is only tested on _my_ project and only on mac os. Not every project, or every os, so you may find other issues.
 
-### Docker cli configuration in `~/.profile`
+#### Docker cli configuration in `~/.profile`
 
 The part where you configures the docker cli only sets up your current terminal. And needs to be done in every terminal you open, before you use docker.
 
