@@ -10,7 +10,7 @@ And some links:
 
 - https://alexos.dev/2022/01/02/docker-desktop-alternatives-for-m1-mac/
 
-## Ranger desktop
+## Rancher Desktop
 
 GUI and super simple installation for docker/kubernetes. Would recommend!
 Mac, linux and windows support.
